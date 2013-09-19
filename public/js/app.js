@@ -22,6 +22,7 @@ var AppRouter = Backbone.Router.extend({
     );
 
     this.menuView = new MenuView({collection: this.menuItems});
+    this.menuItemForm = new MenuItemForm({model: new MenuItem()});
   },
 
   list: function () {
@@ -41,7 +42,7 @@ var AppRouter = Backbone.Router.extend({
   },
 
   itemForm: function () {
-    $('#app').html('New item form');
+    $('#app').html(this.menuItemForm.render().el);
   }
 });
 
