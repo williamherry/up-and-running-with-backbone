@@ -7,10 +7,10 @@ var AppRouter = Backbone.Router.extend({
   },
 
   initialize: function () {
+    this.menuItemModel = new MenuItem();
     this.menuItemView = new MenuItemDetails(
       {
-        category: 'Entree',
-        imagepath: 'garden-salad.jpg'
+        model: this.menuItemModel
       }
     );
 
@@ -41,7 +41,7 @@ var AppRouter = Backbone.Router.extend({
   },
 
   itemDetails: function (item) {
-    this.menuItemView.options.name = item;
+    this.menuItemModel.set('name', item);
     $('#app').html(this.menuItemView.render().el);
   },
 

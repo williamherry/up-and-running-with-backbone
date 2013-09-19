@@ -7,7 +7,7 @@ var MenuItemDetails = Backbone.View.extend({
     '</div>'
   ),
   render: function () {
-    this.$el.html(this.template(this.options));
+    this.$el.html(this.template(this.model.attributes));
     return this;
   }
 });
