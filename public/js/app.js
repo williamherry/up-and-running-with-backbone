@@ -7,6 +7,9 @@ var AppRouter = Backbone.Router.extend({
   },
 
   initialize: function () {
+    this.menuItems = new MenuItems();
+    this.menuItems.fetch();
+
     this.menuItemModel = new MenuItem();
     this.menuItemView = new MenuItemDetails(
       {
