@@ -8,7 +8,6 @@ var AppRouter = Backbone.Router.extend({
 
   initialize: function  () {
     this.menuItems = new MenuItems();
-    this.menuItems.fetch();
 
     this.orderedItems = new MenuItems();
 
