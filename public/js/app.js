@@ -12,10 +12,20 @@ var AppRouter = Backbone.Router.extend({
         imagepath: 'garden-salad.jpg'
       }
     );
+
+    this.menuView = new MenuView(
+      {
+        items: [
+          "Garden Salad",
+          "Pizza",
+          "CheeseCake"
+        ]
+      }
+    );
   },
 
   list: function () {
-    $('#app').html('List screen');
+    $('#app').html(this.menuView.render().el);
   },
 
   itemDetails: function (item) {
