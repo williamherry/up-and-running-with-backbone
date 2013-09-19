@@ -14,13 +14,10 @@ var AppRouter = Backbone.Router.extend({
       }
     );
 
+    this.menuList = new MenuList();
     this.menuView = new MenuView(
       {
-        items: [
-          "Garden Salad",
-          "Pizza",
-          "CheeseCake"
-        ]
+        model: this.menuList
       }
     );
 
