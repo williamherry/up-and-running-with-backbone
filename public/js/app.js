@@ -5,20 +5,22 @@ var AppRouter = Backbone.Router.extend({
     "menu-items/:item": "itemDetails"
   },
 
+  initialize: function () {
+    this.menuItemView = new MenuItemDetails(
+      {
+        category: 'Entree',
+        imagepath: 'garden-salad.jpg'
+      }
+    );
+  },
+
   list: function () {
     $('#app').html('List screen');
   },
 
   itemDetails: function (item) {
-    var view = new MenuItemDetails(
-      {
-        name: item,
-        category: 'Entree',
-        imagepath: 'garden-salad.jpg'
-      }
-    );
-
-    $('#app').html(view.render().el);
+    this.menuItemView.options.name = item;
+    $('#app').html(this.menuItemView.render().el);
   },
 
   itemForm: function () {
