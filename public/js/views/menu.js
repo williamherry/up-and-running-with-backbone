@@ -2,16 +2,16 @@ var MenuView = Backbone.View.extend({
 
   template: Handlebars.compile(
     '<ul>' +
-    '{{#each items}}<li>{{this}}</li>{{/each}}' +
+    '{{#each models}}<li>{{attributes.name}}</li>{{/each}}' +
     '</ul>'
   ),
 
-  initialize: function () {
-    this.listenTo(this.model, 'change', this.render);
+  initialize: function  () {
+    this.listenTo(this.collection, "reset", this.render);
   },
 
   render: function () {
-    this.$el.html(this.template(this.model.attributes));
+    this.$el.html(this.template(this.collection));
     return this;
   }
 

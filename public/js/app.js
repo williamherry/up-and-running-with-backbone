@@ -2,11 +2,10 @@ var AppRouter = Backbone.Router.extend({
   routes: {
     "": "list",
     "menu-items/new": "itemForm",
-    "menu-items/:item": "itemDetails",
-    "categories/:category": "categoryDetails"
+    "menu-items/:item": "itemDetails"
   },
 
-  initialize: function () {
+  initialize: function  () {
     this.menuItems = new MenuItems();
     this.menuItems.fetch();
 
@@ -17,23 +16,7 @@ var AppRouter = Backbone.Router.extend({
       }
     );
 
-    this.menuList = new MenuList();
-    this.menuView = new MenuView(
-      {
-        model: this.menuList
-      }
-    );
-
-    this.menuCategoryView = new MenuCategoryView(
-      {
-        category: 'Entree',
-        images: [
-          "carrots.jpg",
-          "green-beans.jpg",
-          "mashed-potatoes.jpg"
-        ]
-      }
-    );
+    this.menuView = new MenuView({collection: this.menuItems});
   },
 
   list: function () {
@@ -44,11 +27,6 @@ var AppRouter = Backbone.Router.extend({
     this.menuItemModel.set('id', item);
     this.menuItemModel.fetch();
     $('#app').html(this.menuItemView.render().el);
-  },
-
-  categoryDetails: function (category) {
-    this.menuCategoryView.options.category = category;
-    $('#app').html(this.menuCategoryView.render().el);
   },
 
   itemForm: function () {
