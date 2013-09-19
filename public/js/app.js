@@ -41,7 +41,8 @@ var AppRouter = Backbone.Router.extend({
   },
 
   itemDetails: function (item) {
-    this.menuItemModel.set('name', item);
+    this.menuItemModel.set('id', item);
+    this.menuItemModel.fetch();
     $('#app').html(this.menuItemView.render().el);
   },
 
