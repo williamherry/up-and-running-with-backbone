@@ -22,17 +22,30 @@ var MenuItemForm = Backbone.View.extend({
     '</form>'
   ),
 
-  events: {
-    'click .btn-primary': 'setModelData'
-  },
-
   render: function  () {
     this.$el.html(this.template());
+    this.delegateEvents({
+      'click .btn-primary': 'save'
+    });
     return this;
+  },
+
+  save: function () {
+    this.setModelData();
+
+    this.model.save(this.model.attributes,
+      {
+        success: function (model) {
+          app.menuItems.add(model);
+          app.navigate('menu-items/' + model.get('url'), {trigger: true});
+        }
+      }
+    );
   },
 
   setModelData: function  () {
     this.model.set({
+      id: null,
       name: this.$el.find('input[name="name"]').val(),
       category: this.$el.find('input[name="category"]').val(),
       url: this.$el.find('input[name="url"]').val(),
