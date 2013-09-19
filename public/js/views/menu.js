@@ -2,7 +2,7 @@ var MenuView = Backbone.View.extend({
 
   template: Handlebars.compile(
     '<ul>' +
-    '{{#each models}}<li>{{attributes.name}}</li>{{/each}}' +
+    '{{#each models}}<li><a href="#/orders/{{attributes.id}}">{{attributes.name}}</a></li>{{/each}}' +
     '</ul>'
   ),
 
