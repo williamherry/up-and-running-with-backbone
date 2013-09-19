@@ -1,14 +1,4 @@
 var MenuItemDetails = Backbone.View.extend({
-  template: Handlebars.compile(
-    '<div>' +
-    '<h1>{{name}}</h1>' +
-    '<p><span class="label">{{category}}</span></p>' +
-    '<img src="photos/{{imagepath}}" class="img-polaroid" />' +
-    '</div>' +
-    '<p></p>' +
-    '<button type="button" class="btn btn-danger confirm-delete">Delete</button>'
-  ),
-
   initialize: function () {
     this.listenTo(this.model, "change", this.render);
   },
@@ -25,7 +15,7 @@ var MenuItemDetails = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template(this.model.attributes));
+    this.$el.html(Handlebars.templates.details(this.model.attributes));
     this.delegateEvents({
       'click .btn-danger': 'deleteItem'
     });
